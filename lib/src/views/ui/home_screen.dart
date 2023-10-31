@@ -45,6 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       style: const TextStyle(fontSize: 25),
                       textAlign: TextAlign.center,
                       decoration: const InputDecoration(
+                        hintText: "Conference ID",
                         border: OutlineInputBorder(),
                       ),
                     ),
@@ -53,23 +54,46 @@ class _HomeScreenState extends State<HomeScreen> {
                   SizedBox(
                     height: 50,
                     width: MediaQuery.of(context).size.width,
-                    child: WidgetFactory.buildButton(context: context,
-                        child: Text("START/JOIN"),
-                        backgroundColor: kThemeColor,
-                        borderRadius: 10,
-                        textColor: Colors.white,
-                        onPressed: (){
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => VideoConferenceScreen(
-                                conferenceID: conferenceID.text,
-                              ),
+                    child: WidgetFactory.buildButton(
+                      context: context,
+                      child: const Text("START/JOIN"),
+                      backgroundColor: kThemeColor,
+                      borderRadius: 10,
+                      textColor: Colors.white,
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => VideoConferenceScreen(
+                              conferenceID: conferenceID.text,
                             ),
-                          );
-                        },
+                          ),
+                        );
+                      },
                     ),
                   ),
+                  SizedBox(height: MediaQuery.of(context).size.height / 3),
+                  RichText(
+                    text: const TextSpan(
+                      text: 'Note: ',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                          color: Colors.red
+                      ),
+                      children: <TextSpan>[
+                        TextSpan(
+                          text:
+                              'Host will give the Conference Id, example : 1234. and all member must join with host provided conference id.',
+                          style: TextStyle(
+                            fontWeight: FontWeight.normal,
+                            fontSize: 18,
+                            color: Colors.black
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
                 ],
               ),
             ),
